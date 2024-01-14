@@ -7,7 +7,8 @@ async function cadastrarTarefa(){
   var descricao = prompt('Digite a descrição da tarefa: ');
 
   try{
-    await axios.api./** inclua aqui o método post */('/tarefas', {
+    /** inclua aqui o método post */
+    await axios.api.post('/tarefas', {
       id: id,
       descricao: descricao,
       status: 'Pendente'
@@ -25,7 +26,8 @@ async function alterarTarefa(){
   var descricao = prompt('Digite a nova descrição para a tarefa: ');
 
   try{
-    await axios.api./** inclua aqui o método put */(`/tarefas/${id}`, {
+    /** inclua aqui o método put */
+    await axios.api.put(`/tarefas/${id}`, {
       id: id,
       descricao: descricao,
       status: 'Pendente'
@@ -45,7 +47,8 @@ async function marcarTarefaConcluida(){
   var tarefa = await obterTarefa(id);
 
   try{
-    await axios.api./** inclua aqui o método put */(`/tarefas/${id}`, {
+    /** inclua aqui o método put */
+    await axios.api.put(`/tarefas/${id}`, {
       id: id,
       descricao: tarefa.descricao,
       status: 'Concluída'
@@ -62,7 +65,8 @@ async function excluirTarefa(){
   var id = Number(prompt('Digite o ID da tarefa que será excluída: '));
 
   try{
-    await axios.api./** inclua aqui o método delete */(`/tarefas/${id}`);
+    /** inclua aqui o método delete */
+    await axios.api.delete(`/tarefas/${id}`);
 
     console.log('Tarefa excluída com sucesso!');
   }catch(erro){
@@ -73,8 +77,8 @@ async function excluirTarefa(){
 async function listarTarefasPendentes(){
 
   try{
-
-    var response = await axios.api./** inclua aqui o método get */('/tarefas');
+/** inclua aqui o método get */
+    var response = await axios.api.get('/tarefas');
     var lista = response.data.filter((item) => item.status === 'Pendente');
 
     console.table(lista);
@@ -86,8 +90,8 @@ async function listarTarefasPendentes(){
 
 async function listarTarefasConcluidas(){
   try{
-
-    var response = await axios.api./** inclua aqui o método get */('/tarefas');
+/** inclua aqui o método get */
+    var response = await axios.api.get('/tarefas');
     var lista = response.data.filter((item) => item.status === 'Concluída');
 
     console.table(lista);
@@ -97,8 +101,8 @@ async function listarTarefasConcluidas(){
 }
 
 async function obterTarefa(id){
-
-  var response = await axios.api./** inclua aqui o método get */(`/tarefas/${id}`);
+/** inclua aqui o método get */
+  var response = await axios.api.get(`/tarefas/${id}`);
 
   var tarefa = response.data;
 
